@@ -1,4 +1,4 @@
-// Problem: Write a program to implement a simple address book application.
+// // Problem: Write a program to implement a simple address book application.
 
 // class AddressBook {
 //     constructor(){
@@ -16,7 +16,6 @@
 //                 address,
 //                 email
 //             }
-//             // console.log( this.contactInformation[name] + " your addess is " + this.contactInformation[name].address)
 //         }
 //     }
 
@@ -46,7 +45,6 @@
 //             delete this.contactInformation[name]
 //             const contactInformation = (Object.values(this.contactInformation))
 //             const contactName = (Object.keys(this.contactInformation))
-//             console.log("contact info", contactInformation, contactName)
 //         }
 //         else{
 //             return console.log("Contact not found")
