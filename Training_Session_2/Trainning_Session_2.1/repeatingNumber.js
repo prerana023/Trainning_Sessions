@@ -1,5 +1,17 @@
 //Problem: Find Most Frequently Repeating Number in a List
 
+
+/**
+ * 
+ * 
+ * This function finds the most repeating numbers in a list and returns the repeating number
+ * If multiple numbers are repeating then it stores the number in an array and returns a random number from that array 
+ * 
+ * @param {Array} numbers 
+ * @returns 
+ */
+
+
 function find_most_frequent(numbers){
     const mappedList = new Map();
     numbers.forEach(listElement =>{
