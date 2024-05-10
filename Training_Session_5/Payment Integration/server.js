@@ -1,8 +1,9 @@
-// This is your test secret API key.
 const stripe = require('stripe')('sk_test_51PEEOH02817CiaKgJmfF6QNQdcdohZOXJrTgVVPSftOqGLbkwYfSZc7NmNRcFhzcJWsNJi5OqAKHCI79CZLMnYt200VHwhBtME');
 const express = require('express');
+const path = require('path');
+
 const app = express();
-app.use(express.static('/checkout.html'));
+app.use(express.static(path.join(__dirname, 'public')))
 
 const YOUR_DOMAIN = 'http://localhost:4242';
 
