@@ -1,0 +1,13 @@
+shifts = [
+    ("Alice", "Monday", "Morning"),
+    ("Frank", "Monday", "Morning"),
+    ("Bob", "Monday", "Evening"),
+    ("Charlie", "Tuesday", "Afternoon"),
+    ("David", "Tuesday", "Morning"),
+    ("Eve", "Wednesday", "Evening"),
+    ("Frank", "Wednesday", "Morning"),
+    ("Grace", "Thursday", "Afternoon"),
+    ("Alice", "Friday", "Morning"),
+    ("Bob", "Friday", "Afternoon"),
+    ("Charlie", "Monday", "Afternoon"),
+]
