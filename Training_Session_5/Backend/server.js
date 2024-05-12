@@ -41,7 +41,7 @@ app.post('/webhook', express.raw({type: 'application/json'}), (request, response
   let event;
 
   try {
-    event = stripe.webhooks.constructEvent(request.body, sig, process.env.endpointSecret);
+    event = stripe.webhooks.constructEvent(request.body, sig, process.env.EndPointSecret);
     console.log("Event", event)
   }
   catch (err) {
