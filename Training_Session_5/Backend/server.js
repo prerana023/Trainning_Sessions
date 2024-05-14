@@ -1,37 +1,47 @@
-// This is your test secret API key.
+
 require('dotenv').config({path: './.env' })
-const stripe = require('stripe')(process.env.SIGNING_KEY);
 const express = require('express');
 var cors = require('cors')
+
+const stripe = require('stripe')(process.env.SECRET_KEY);
 const app = express();
 
 app.use(cors())
 app.use(express.static('public'));
+app.use(express.json());
+
 
 app.post('/create-checkout-session', async (request, response) => {
   try{
-    const session = await stripe.checkout.sessions.create({
-      line_items: [
-        {
-          price_data: {
-            currency: 'usd',
-            product_data: {
-              name: 'T-shirt',
-            },
-            unit_amount: 2000,
+    const { products} = request.body;
+    console.log("Products", request.body)
+    let lineItems = products.map((product) => {
+      return {
+        price_data: {
+          currency: "usd",
+          product_data: {
+            name: product.title   
           },
-          quantity: 1,
+          unit_amount: product.price * 100
         },
-      ],
+        quantity: product.quantity
+      };
+    });
+    console.log("lineItems", lineItems);
+
+    const session = await stripe.checkout.sessions.create({
+      line_items: lineItems,
       mode: 'payment',
       success_url: `http://localhost:${process.env.SERVER_PORT}/success.html`,
       cancel_url: `http://localhost:${process.env.SERVER_PORT}/cancel.html`,
     });
+
+    response.json({id:session.id})
   
-    response.redirect(303, session.url);
+    // response.redirect(303, session.url);
   }
   catch(error){
-    console.log(error)
+    console.log("Error",error)
   }
 });
 
@@ -63,11 +73,10 @@ app.post('/webhook', express.raw({type: 'application/json'}), (request, response
       console.log(`Unhandled event type ${event.type}`);
   }
 
-  // Return a response to acknowledge receipt of the event
-  console.log(event.type)
-  console.log(event.data.object)
-  console.log(event.data.object.id)
-  response.json({received: true});
+  // console.log(event.type)
+  // console.log(event.data.object)
+  // console.log(event.data.object.id)
+  // response.json({received: true});
 });
 
 app.listen(process.env.SERVER_PORT, () => console.log('Running on port 4242'));

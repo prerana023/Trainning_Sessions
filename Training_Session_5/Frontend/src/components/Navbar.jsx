@@ -2,17 +2,36 @@ import React, { useState, useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { CartContext } from "./Cart/cartContext";
+import { loadStripe } from "@stripe/stripe-js";
 
 function Navbar() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const cart = useContext(CartContext);
+  console.log("Items",cart.items);
 
-  const handleClick = () => {
-    console.log("Remove product")
+  const handleCheckout = async() =>{
+    const stripe = await loadStripe('pk_test_51PEEOH02817CiaKgotwexNlDZcLC4UCyl18pvyq2hK117Z6csNi6T9mKuMMUGvCd37hZYazDx9tWfoYxefv7ClTN00bA1wTYk4');
+    const body = {
+      products: cart.items
+    }
+    const header = {
+      'Content-Type': 'application/json'
+    }
+    const response = await fetch('http://localhost:4242/create-checkout-session',{
+      method: "POST",
+      headers: header,
+      body: JSON.stringify(body),     
+    });
+    const session = await response.json();
+    const result = stripe.redirectToCheckout({
+      sessionId:session.id
+    });
+
+    if(result.error){
+      console.log(result.error);
+    }
   }
-  const handleCheckoutClick = () => {
-    setIsModalOpen(true);
-  };
+
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -51,9 +70,6 @@ function Navbar() {
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                   <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
-                    <th scope="col" class="px-6 py-3">
-                        Product ID
-                      </th>
                       <th scope="col" class="px-6 py-3">
                         Product name
                       </th>
@@ -76,7 +92,6 @@ function Navbar() {
                       cart.items.map((item, index) => (
                     <tr key={index} 
                     class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                      <td class="px-6 py-4">{item.id}</td>
 
                       <th
                         scope="row"
@@ -106,7 +121,8 @@ function Navbar() {
                 </table>
               </div>
               <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold mt-5 py-2 px-4 rounded"
+              className="bg-green-500 hover:bg-green-700 text-white font-bold mt-5 py-2 px-4 rounded"
+              onClick={handleCheckout}
             >
               Checkout
             </button>

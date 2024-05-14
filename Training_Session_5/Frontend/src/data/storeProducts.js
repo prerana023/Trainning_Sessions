@@ -5,19 +5,19 @@ import product3Image from '../assets/mouse.jpg';
 
 const productsArray = [
     {
-        id: "1",
+        id: "price_1PFhye02817CiaKgLr6ZNQgl",
         title: "Coffee Mug",
         price: 400,
         imageUrl: product1Image
     },
     {
-        id:"2",
+        id:"price_1PEQ8e02817CiaKgsblpJIhF",
         title:"Sunglasses",
-        price: 2000,
+        price: 100,
         imageUrl: product2Image
     },
     {
-        id: "3",
+        id: "price_1PFi1702817CiaKg0q27U8dw",
         title: "Gaming Mouse",
         price: 1500,
         imageUrl: product3Image

@@ -2,7 +2,7 @@ import { useState } from "react";
 import Navbar from "./components/Navbar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Store from "./components/Store";
-import Checkout from "./components/Checkout";
+import { ToastContainer } from "react-toastify";
 import CartProvider from "./components/Cart/cartContext";
 
 function App() {

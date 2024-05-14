@@ -1,11 +1,11 @@
 import React, { useState, useContext } from 'react'; 
 import { CartContext } from './Cart/cartContext';
+import { toast } from 'react-toastify';
 
-function ProductCard({ id, title, price, imageUrl}) {
+function ProductCard({ id, title, price, imageUrl }) {
   const cart = useContext(CartContext);
   const productQuantity = cart.getProductQuantity(id);
   const [quantity, setQuantity] = useState(productQuantity); 
-  console.log("Items",cart.items);
 
   return (
     <div className="bg-white rounded-lg shadow-lg hover:shadow-xl p-4 m-6">
@@ -17,7 +17,10 @@ function ProductCard({ id, title, price, imageUrl}) {
       <div className="flex items-center">
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2"
-          onClick={() => cart.addOneToCart(id, title, price)}
+          onClick={() => {
+            cart.addOneToCart(id, title, price);
+            toast.success("Item added to cart successfully!")
+          }}
         >
           Add to Cart
         </button>
