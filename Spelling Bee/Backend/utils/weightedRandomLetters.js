@@ -1,73 +1,55 @@
-// Adjusting the weights for vowels and consonants to favor valid words
 const vowels = {
-    'a': 7,
-    'e': 7,
-    'i': 5,
-    'o': 5,
-    'u': 5
+  'a': 8.17,
+  'e': 12.70,
+  'i': 7.50,
+  'o': 7.50,
+  'u': 2.80
 };
-  
+
 const consonants = {
-    'b': 5,
-    'c': 5,
-    'd': 5,
-    'f': 5,
-    'g': 5,
-    'h': 5,
-    'j': 5,
-    'k': 5,
-    'l': 10, 
-    'm': 5,
-    'n': 10, 
-    'p': 5,
-    'q': 5,
-    'r': 10, 
-    's': 10, 
-    't': 10, 
-    'v': 5,
-    'w': 5,
-    'x': 5,
-    'y': 5,
-    'z': 5
+  'b': 1.49,
+  'c': 2.78,
+  'd': 4.25,
+  'f': 2.23,
+  'g': 2.02,
+  'h': 6.09,
+  'j': 0.15,
+  'k': 0.77,
+  'l': 4.03, 
+  'm': 2.41,
+  'n': 6.75, 
+  'p': 1.93,
+  'q': 0.10,
+  'r': 5.99, 
+  's': 6.33, 
+  't': 9.06, 
+  'v': 0.98,
+  'w': 2.36,
+  'x': 0.15,
+  'y': 1.97,
+  'z': 0.07
 };
 
 
-  // Function to generate a random letter based on weighted probabilities
-  function weightedRandom(probabilities) {
-    const totalWeight = Object.values(probabilities).reduce((acc, val) => acc + val, 0);
-    let random = Math.random() * totalWeight;
-    for (let letter in probabilities) {
-      random -= probabilities[letter];
-      if (random <= 0) return letter;
-    }
+function weightedRandom(probabilities) {
+  const totalWeight = Object.values(probabilities).reduce((acc, val) => acc + val, 0);
+  let random = Math.random() * totalWeight;
+  for (let letter in probabilities) {
+    random -= probabilities[letter];
+    if (random <= 0) return letter;
   }
-  
-  // Function to generate a random word of length 7 with desired characteristics
-//   function generateRandomWord() {
-//     let word = '';
-//     for (let i = 0; i < 7; i++) {
-//       if (i % 2 === 0) { 
-//         word += weightedRandom(vowels);
-//       } else { 
-//         word += weightedRandom(consonants);
-//       }
-//     }
-//     return word;
-//   }
-  
-
-  function generateRandomWord() {
-    let randomLetters = [];
-    for (let i = 0; i < 7; i++) {
-        if (i % 2 === 0) { 
-            randomLetters.push(weightedRandom(vowels));
-        } else { 
-            randomLetters.push(weightedRandom(consonants));
-        }
-    }
-    return randomLetters.join(''); 
 }
 
-  generateRandomWord();
+function generateRandomWord() {
+  let randomLetters = [];
+  for (let i = 0; i < 7; i++) {
+      if (i % 2 === 0) { 
+          randomLetters.push(weightedRandom(vowels));
+      } else { 
+          randomLetters.push(weightedRandom(consonants));
+      }
+  }
+  return randomLetters.join(''); 
+}
 
 module.exports = { generateRandomWord}
