@@ -30,7 +30,6 @@ const consonants = {
   'z': 0.07
 };
 
-
 function weightedRandom(probabilities) {
   const totalWeight = Object.values(probabilities).reduce((acc, val) => acc + val, 0);
   let random = Math.random() * totalWeight;
@@ -42,14 +41,22 @@ function weightedRandom(probabilities) {
 
 function generateRandomWord() {
   let randomLetters = [];
+  let usedLetters = {};
   for (let i = 0; i < 7; i++) {
-      if (i % 2 === 0) { 
-          randomLetters.push(weightedRandom(vowels));
-      } else { 
-          randomLetters.push(weightedRandom(consonants));
-      }
+    let nextLetter;
+    if (i % 2 === 0) { 
+      do {
+        nextLetter = weightedRandom(vowels);
+      } while (usedLetters[nextLetter]);
+    } else { 
+      do {
+        nextLetter = weightedRandom(consonants);
+      } while (usedLetters[nextLetter]);
+    }
+    randomLetters.push(nextLetter);
+    usedLetters[nextLetter] = true;
   }
   return randomLetters.join(''); 
 }
 
-module.exports = { generateRandomWord}
+module.exports = { generateRandomWord }
