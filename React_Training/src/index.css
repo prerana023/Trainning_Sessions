@@ -2,8 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  body {
-    @apply bg-blue text-white px-4 block;
-  }
+
+body {
+  @apply bg-dark-blue text-white px-4 block;
 }

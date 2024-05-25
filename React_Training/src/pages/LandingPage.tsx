@@ -1,4 +1,19 @@
+import React, { useState } from 'react';
+import Button from "../components/Button";
+import SearchButton from "../components/SearchButton";
+import Modal from '../components/Modal';
+
+
 function LandingPage() {
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
   return (
     <>
       <div className="main-container px-4">
@@ -29,11 +44,11 @@ function LandingPage() {
               <li>Blog</li>
               <li>Showcase</li>
             </ul>
-            <div className="socials flex items center border-l border-grey ml-6 pl-6">
+            <div className="socials flex items center border-l border-slate-400 ml-6 pl-6">
             {/* <button>Mode</button>   */}
               <svg
                 viewBox="0 0 16 16"
-                className="w-5 h-5 text-light-grey"
+                className="w-5 h-5 text-slate-400"
                 fill="currentColor"
                 aria-hidden="true"
               >
@@ -44,16 +59,23 @@ function LandingPage() {
         </div>
         <div className="content relative max-w-5xl mx-auto pt-20 sm:pt-24 lg:pt-32">
                 <h1 className="title font-extrabold text-4xl sm:text-5xl lg:text-6xl text-center">Rapidly build modern websites without ever leaving your HTML.</h1>
-                <p className="mt-6 text-lg font-sans text-light-grey text-center max-w-3xl mx-auto">A utility-first CSS framework packed with classes like"
-                 <code className="font-mono font-medium text-sky-blue"> flex,</code>
-                 <code className="font-mono font-medium text-sky-blue"> pt-4,</code>
-                 <code className="font-mono font-medium text-sky-blue"> text-center, </code>
+                <p className="mt-6 text-lg font-sans text-slate-400 text-center max-w-3xl mx-auto">A utility-first CSS framework packed with classes like
+                 <code className="font-mono font-medium text-sky-500"> flex,</code>
+                 <code className="font-mono font-medium text-sky-500"> pt-4,</code>
+                 <code className="font-mono font-medium text-sky-500"> text-center, </code>
                  and
-                 <code className="font-mono font-medium text-sky-blue"> rotate-90 </code>
+                 <code className="font-mono font-medium text-sky-500"> rotate-90 </code>
                  that can be composed to build any design, directly in your markup.</p>
-            <div className=""></div>
+            <div className="buttons-inputs mt-6 flex justify-center space-x-6 text-sm">
+              <Button label="Get started"></Button>
+              <SearchButton label="Quick search..." onClick={openModal}></SearchButton>
+            </div>
         </div>
       </div>
+      <Modal isOpen={isModalOpen} onClose={closeModal}>
+        <h2 className="text-xl font-bold mb-4">Search</h2>
+        <p>Search functionality will be here.</p>
+      </Modal>
     </>
   );
 }
