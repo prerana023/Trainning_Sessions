@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Button from "../components/Button";
 import SearchButton from "../components/SearchButton";
 import Modal from '../components/Modal';
@@ -73,8 +73,7 @@ function LandingPage() {
         </div>
       </div>
       <Modal isOpen={isModalOpen} onClose={closeModal}>
-        <h2 className="text-xl font-bold mb-4">Search</h2>
-        <p>Search functionality will be here.</p>
+        <p></p>
       </Modal>
     </>
   );

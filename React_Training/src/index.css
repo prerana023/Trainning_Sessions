@@ -6,3 +6,7 @@
 body {
   @apply bg-dark-blue text-white px-4 block;
 }
+
+.DocSearch-Modal {
+  @apply mx-auto w-full max-w-[47.375rem] flex flex-col min-h-0 rounded-lg box-border border-0 border-solid border-gray-300;
+}
