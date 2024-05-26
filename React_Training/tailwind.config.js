@@ -4,6 +4,7 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: "class",
   theme: {
     fontFamily:{
       sans:[ 'Inter var', 'ui-sans-serif', 'system-ui', 'sans-serif']

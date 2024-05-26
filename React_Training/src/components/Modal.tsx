@@ -10,14 +10,6 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
   const [inputValue, setInputValue] = useState("");
   const [items, setItems] = useState<string[]>([]);
 
-  // useEffect(() => {
-  //   if (inputValue) {
-  //     setItems([inputValue]);
-  //   } else {
-  //     setItems([]);
-  //   }
-  // }, [inputValue]);
-
   if (!isOpen) return null;
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,9 +25,9 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50">
-      <div className="absolute inset-0 bg-gray-blue bg-opacity-40 backdrop-blur-sm"></div>
-      <div className="DocSearch-Modal bg-gray-blue text-slate-500 p-4 rounded-lg shadow-lg relative ">
-        <div className="flex items-center border-b-2 border-slate-500 te p-2">
+      <div className="absolute inset-0 bg-white bg-opacity-90 dark:bg-gray-blue dark:bg-opacity-40 backdrop-filter backdrop-blur-sm"></div>
+      <div className="DocSearch-Modal bg-white dark:bg-gray-blue dark:text-slate-500 p-4 rounded-lg shadow-lg relative ">
+        <div className="flex items-center border-b-2 dark:border-slate-500 p-2">
           <label className="DocSearch-MagnifierLabel" id="docsearch-label">
             <svg
               width="20"
@@ -54,7 +46,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
             </svg>
           </label>
           <input
-            className="DocSearch-Input bg-gray-blue px-4"
+            className="DocSearch-Input dark:bg-gray-blue px-4 outline-none"
             aria-autocomplete="both"
             aria-labelledby="docsearch-label"
             id="docsearch-input"
@@ -68,19 +60,19 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
           />
           <button
             onClick={onClose}
-            className="absolute right-2 border-0 rounded-lg bg-slate-700 bg-opacity-75 p-2 mb-3 text-slate-300 text-xs"
+            className="absolute right-2 font-semibold border-2 bg-white hover:border-slate-300 dark:border-0 rounded-lg dark:bg-slate-700 dark:bg-opacity-75 p-2 mb-3 dark:text-slate-300 text-xs"
           >
             Esc
           </button>
         </div>
-        <ul className="mt-4 space-y-2 divide-y divide-slate-700">
+        <ul className="mt-4 space-y-2 divide-y dark:divide-slate-700">
         {inputValue && (
-            <li key="current" className="text-white">
+            <li key="current" className="dark:text-white">
               {inputValue}
             </li>
           )}
           {items.map((item, index) => (
-            <li key={index} className="text-slate-500">
+            <li key={index} className="dark:text-slate-500">
               {item}
             </li>
           ))}

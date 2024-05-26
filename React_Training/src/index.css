@@ -4,7 +4,7 @@
 
 
 body {
-  @apply bg-dark-blue text-white px-4 block;
+  @apply bg-white text-dark-blue mx-6 block dark:bg-dark-blue dark:text-white;
 }
 
 .DocSearch-Modal {

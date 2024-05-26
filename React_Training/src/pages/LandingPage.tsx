@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useState } from "react";
 import Button from "../components/Button";
 import SearchButton from "../components/SearchButton";
-import Modal from '../components/Modal';
-
+import Modal from "../components/Modal";
+import ThemeButton from "../components/ThemeButton";
 
 function LandingPage() {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -16,7 +16,6 @@ function LandingPage() {
   };
   return (
     <>
-      <div className="main-container px-4">
         <div className="navbar font-semibold flex justify-between pt-6">
           <div className="logo px-6">
             <svg
@@ -39,16 +38,25 @@ function LandingPage() {
           </div>
           <div className="navbar-content flex items-center">
             <ul className="flex items-center gap-8">
-              <li>Docs</li>
-              <li>Components</li>
-              <li>Blog</li>
-              <li>Showcase</li>
+              <li className="hover:text-sky-500 dark:hover:text-sky-400">
+                Docs
+              </li>
+              <li className="hover:text-sky-500 dark:hover:text-sky-400">
+                Components
+              </li>
+              <li className="hover:text-sky-500 dark:hover:text-sky-400">
+                Blog
+              </li>
+              <li className="hover:text-sky-500 dark:hover:text-sky-400">
+                Showcase
+              </li>
             </ul>
             <div className="socials flex items center border-l border-slate-400 ml-6 pl-6">
-            {/* <button>Mode</button>   */}
+              {/* Theme Button */}
+              < ThemeButton />
               <svg
-                viewBox="0 0 16 16"
-                className="w-5 h-5 text-slate-400"
+                viewBox="0 0 16 14"
+                className="w-5 h-5 mt-0.5 text-slate-400"
                 fill="currentColor"
                 aria-hidden="true"
               >
@@ -58,20 +66,32 @@ function LandingPage() {
           </div>
         </div>
         <div className="content relative max-w-5xl mx-auto pt-20 sm:pt-24 lg:pt-32">
-                <h1 className="title font-extrabold text-4xl sm:text-5xl lg:text-6xl text-center">Rapidly build modern websites without ever leaving your HTML.</h1>
-                <p className="mt-6 text-lg font-sans text-slate-400 text-center max-w-3xl mx-auto">A utility-first CSS framework packed with classes like
-                 <code className="font-mono font-medium text-sky-500"> flex,</code>
-                 <code className="font-mono font-medium text-sky-500"> pt-4,</code>
-                 <code className="font-mono font-medium text-sky-500"> text-center, </code>
-                 and
-                 <code className="font-mono font-medium text-sky-500"> rotate-90 </code>
-                 that can be composed to build any design, directly in your markup.</p>
-            <div className="buttons-inputs mt-6 flex justify-center space-x-6 text-sm">
-              <Button label="Get started"></Button>
-              <SearchButton label="Quick search..." onClick={openModal}></SearchButton>
-            </div>
+          <h1 className="title font-extrabold text-4xl sm:text-5xl lg:text-6xl text-center">
+            Rapidly build modern websites without ever leaving your HTML.
+          </h1>
+          <p className="mt-6 text-lg font-sans text-slate-600 dark:text-slate-400 text-center max-w-3xl mx-auto">
+            A utility-first CSS framework packed with classes like
+            <code className="font-mono font-medium text-sky-500"> flex,</code>
+            <code className="font-mono font-medium text-sky-500"> pt-4,</code>
+            <code className="font-mono font-medium text-sky-500">
+              {" "}
+              text-center,{" "}
+            </code>
+            and
+            <code className="font-mono font-medium text-sky-500">
+              {" "}
+              rotate-90{" "}
+            </code>
+            that can be composed to build any design, directly in your markup.
+          </p>
+          <div className="buttons-inputs mt-6 flex justify-center space-x-6 text-sm">
+            <Button label="Get started"></Button>
+            <SearchButton
+              label="Quick search..."
+              onClick={openModal}
+            ></SearchButton>
+          </div>
         </div>
-      </div>
       <Modal isOpen={isModalOpen} onClose={closeModal}>
         <p></p>
       </Modal>
