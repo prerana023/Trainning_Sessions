@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body {
+  @apply bg-white text-dark-blue mx-6 block dark:bg-dark-blue dark:text-white;
+}
+
+.DocSearch-Modal {
+  @apply mx-auto w-full max-w-[47.375rem] flex flex-col min-h-0 rounded-lg box-border border-0 border-solid border-gray-300;
+}
